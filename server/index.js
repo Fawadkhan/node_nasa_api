@@ -10,7 +10,7 @@ server.on('request', async (req, res) => {
             const result = await processCSV();
             console.log("RESULT", result)
             res.writeHead(200, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify(result.map(planet => planet['kepler_name'])));
+            res.end(result.map(planet => planet['kepler_name']));
         } catch (err) {
             res.statusCode = 500;
             res.end('Internal Server Error');
