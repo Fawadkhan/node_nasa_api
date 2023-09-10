@@ -3,7 +3,7 @@ const http = require('http');
 const server = http.createServer();
 
 server.on('request', (req, res) => {
-    if(req.url === '/friends') {
+    if(req.url === '/') {
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ message: 'Hello friends' }));
     }
