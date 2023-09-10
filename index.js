@@ -13,7 +13,7 @@ function isHabitable(planet) {
 fs.createReadStream('kepler.csv')
     .pipe(parse({ comment: '#', columns: true }))
     .on('data', (data) => {
-        if(isHabitable(data)) result.push(data);
+        if (isHabitable(data)) result.push(data);
     })
     .on('end', () => {
         console.log('CSV file successfully processed', result.length, result.map(planet => planet['kepler_name']));
