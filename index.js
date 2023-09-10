@@ -10,7 +10,7 @@ function processCSV() {
     const result = [];
 
     return new Promise((resolve, reject) => {
-        fs.createReadStream('kepler.csv')
+        fs.createReadStream('server/kepler.csv')
             .pipe(parse({ comment: '#', columns: true }))
             .on('data', (data) => {
                 if (isHabitable(data)) result.push(data);
