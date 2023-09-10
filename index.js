@@ -1,9 +1,5 @@
 const { parse } = require('csv-parse');
 const fs = require('fs');
-const { resourceLimits } = require('worker_threads');
-
-const result = []
-
 
 function isHabitable(planet) {
     return planet['koi_disposition'] === 'CONFIRMED' &&
@@ -29,7 +25,5 @@ function processCSV() {
             });
     });
 }
-
-
 
 module.exports = processCSV;
