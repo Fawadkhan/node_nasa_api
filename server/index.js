@@ -1,14 +1,22 @@
 const http = require('http');
+const processCSV = require('../index.js');
 
 const server = http.createServer();
 
-server.on('request', (req, res) => {
+server.on('request', async (req, res) => {
+    
     if(req.url === '/') {
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ message: 'Hello friends' }));
+        try {
+            const result = await processCSV();
+            console.log("RESULT", result)
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify(result.map(planet => planet['kepler_name'])));
+        } catch (err) {
+            res.statusCode = 500;
+            res.end('Internal Server Error');
+        }
     }
     else if(req.url === '/messages') {
-
         res.write('<p>HELLO IM JUST A PARAGRAPH</p>')
         res.write('<p>HELLO IM JUST A PARAGRAPH</p>')
         res.end();
